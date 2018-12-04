@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/Control.OSMGeocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/Control.OSMGeocoder.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/N_EPCI_ZSUP_041_2016_0.js"></script>
+        <script src="data/Salles_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:25, minZoom:1
+        }).fitBounds([[47.5294606085,1.21253452161],[47.6933209486,1.42577502296]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        L.control.locate().addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 25
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_N_EPCI_ZSUP_041_2016_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_EPCI'] !== null ? Autolinker.link(String(feature.properties['ID_EPCI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_EPCI'] !== null ? Autolinker.link(String(feature.properties['NOM_EPCI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TYPE_EPCI'] !== null ? Autolinker.link(String(feature.properties['TYPE_EPCI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAT_EPCI'] !== null ? Autolinker.link(String(feature.properties['NAT_EPCI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SIREN_EPCI'] !== null ? Autolinker.link(String(feature.properties['SIREN_EPCI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PopMun</strong><br />' + (feature.properties['PopMun'] !== null ? Autolinker.link(String(feature.properties['PopMun'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nb_Com'] !== null ? Autolinker.link(String(feature.properties['Nb_Com'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopTotale'] !== null ? Autolinker.link(String(feature.properties['PopTotale'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_N_EPCI_ZSUP_041_2016_0_0() {
+            return {
+                pane: 'pane_N_EPCI_ZSUP_041_2016_0',
+                opacity: 1,
+                color: 'rgba(255,45,118,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_N_EPCI_ZSUP_041_2016_0');
+        map.getPane('pane_N_EPCI_ZSUP_041_2016_0').style.zIndex = 400;
+        map.getPane('pane_N_EPCI_ZSUP_041_2016_0').style['mix-blend-mode'] = 'normal';
+        var layer_N_EPCI_ZSUP_041_2016_0 = new L.geoJson(json_N_EPCI_ZSUP_041_2016_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_N_EPCI_ZSUP_041_2016_0',
+            onEachFeature: pop_N_EPCI_ZSUP_041_2016_0,
+            style: style_N_EPCI_ZSUP_041_2016_0_0,
+        });
+        bounds_group.addLayer(layer_N_EPCI_ZSUP_041_2016_0);
+        function pop_Salles_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nom'] !== null ? Autolinker.link(String(feature.properties['Nom'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Adresse'] !== null ? Autolinker.link(String(feature.properties['Adresse'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ville'] !== null ? Autolinker.link(String(feature.properties['Ville'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Salles_1_0() {
+            return {
+                pane: 'pane_Salles_1',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,1.0)',
+            }
+        }
+        map.createPane('pane_Salles_1');
+        map.getPane('pane_Salles_1').style.zIndex = 401;
+        map.getPane('pane_Salles_1').style['mix-blend-mode'] = 'normal';
+        var layer_Salles_1 = new L.geoJson(json_Salles_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Salles_1',
+            onEachFeature: pop_Salles_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Salles_1_0(feature));
+            },
+        });
+        var cluster_Salles_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_Salles_1.addLayer(layer_Salles_1);
+
+        bounds_group.addLayer(layer_Salles_1);
+        cluster_Salles_1.addTo(map);
+        var osmGeocoder = new L.Control.OSMGeocoder({
+            collapsed: false,
+            position: 'topright',
+            text: 'Search',
+        });
+        osmGeocoder.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Salles_1.png" /> Salles': cluster_Salles_1,'<img src="legend/N_EPCI_ZSUP_041_2016_0.png" /> N_EPCI_ZSUP_041_2016': layer_N_EPCI_ZSUP_041_2016_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
